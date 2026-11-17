@@ -1,0 +1,69 @@
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cyber Consent Lab</title>
+<style>
+body {
+  background:#090e18;
+  color:#e8edf7;
+  font-family:Arial;
+  text-align:center;
+  padding:35px 15px;
+}
+.card {
+  max-width:420px;
+  margin:60px auto;
+  padding:25px;
+  background:#151e2e;
+  border-radius:18px;
+}
+button {
+  background:#16854b;
+  color:white;
+  border:0;
+  padding:14px 25px;
+  border-radius:9px;
+  font-size:17px;
+}
+pre {
+  text-align:left;
+  direction:ltr;
+  white-space:pre-wrap;
+  overflow-wrap:anywhere;
+}
+</style>
+</head>
+<body>
+<div class="card">
+<h2>Cyber Consent Lab</h2>
+<p>مختبر محاكاة واختبار أمني</p>
+<p>اضغط للموافقة على عرض معلومات المتصفح
+التجريبية على هذه الصفحة.</p>
+<button onclick="runTest()">بدء الاختبار</button>
+<pre id="result"></pre>
+</div>
+
+<script>
+function runTest() {
+  const data = {
+    browser: navigator.userAgent,
+    language: navigator.language,
+    platform: navigator.platform,
+    screen: screen.width + "x" + screen.height,
+    viewport: innerWidth + "x" + innerHeight,
+    timezone: Intl.DateTimeFormat()
+      .resolvedOptions().timeZone,
+    timestamp: new Date().toISOString()
+  };
+
+  document.getElementById("result").textContent =
+    JSON.stringify(data, null, 2);
+
+  console.log("Authorized test:", data);
+}
+</script>
+</body>
+</html>
